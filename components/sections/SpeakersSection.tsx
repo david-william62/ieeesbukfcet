@@ -9,49 +9,49 @@ import { cn } from "@/lib/utils";
 const speakers = [
   {
     id: 1,
-    name: "Dr. Sarah Johnson",
-    role: "AI Research Scientist, Google",
-    bio: "Leading researcher in artificial intelligence with focus on neural networks and deep learning applications.",
-    image: "/images/circuit-pattern.svg",
+    name: "Mr. Srikanth Pillai",
+    role: "Chair, IAS CMD",
+    bio: "Research assistant at MARC, McMaster University, with a keen interest in the design of electric motors for Electric Vehicles (EV) and Aerospace applications.",
+    image: "/images/Pillai_Srikanth_12_Resized.jpg",
     social: {
-      linkedin: "https://linkedin.com/in/",
+      linkedin: "https://www.linkedin.com/in/srikanthvpillai/",
       twitter: "https://twitter.com/",
       website: "https://example.com/"
     }
   },
-  {
-    id: 2,
-    name: "Prof. Michael Chen",
-    role: "Quantum Computing Expert, MIT",
-    bio: "Pioneer in quantum computing research with multiple patents in quantum algorithm optimization.",
-    image: "/images/circuit-pattern.svg",
-    social: {
-      linkedin: "https://linkedin.com/in/",
-      twitter: "https://twitter.com/"
-    }
-  },
-  {
-    id: 3,
-    name: "Priya Sharma",
-    role: "Director of Engineering, Microsoft",
-    bio: "Technology leader focused on cloud infrastructure and distributed systems at scale.",
-    image: "/images/circuit-pattern.svg",
-    social: {
-      linkedin: "https://linkedin.com/in/",
-      website: "https://example.com/"
-    }
-  },
-  {
-    id: 4,
-    name: "Dr. James Wilson",
-    role: "Robotics Professor, Stanford",
-    bio: "Specializes in human-robot interaction and autonomous systems for healthcare applications.",
-    image: "/images/circuit-pattern.svg",
-    social: {
-      linkedin: "https://linkedin.com/in/",
-      twitter: "https://twitter.com/"
-    }
-  }
+  // {
+  //   id: 2,
+  //   name: "Prof. Michael Chen",
+  //   role: "Quantum Computing Expert, MIT",
+  //   bio: "Pioneer in quantum computing research with multiple patents in quantum algorithm optimization.",
+  //   image: "/images/circuit-pattern.svg",
+  //   social: {
+  //     linkedin: "https://linkedin.com/in/",
+  //     twitter: "https://twitter.com/"
+  //   }
+  // },
+  // {
+  //   id: 3,
+  //   name: "Priya Sharma",
+  //   role: "Director of Engineering, Microsoft",
+  //   bio: "Technology leader focused on cloud infrastructure and distributed systems at scale.",
+  //   image: "/images/circuit-pattern.svg",
+  //   social: {
+  //     linkedin: "https://linkedin.com/in/",
+  //     website: "https://example.com/"
+  //   }
+  // },
+  // {
+  //   id: 4,
+  //   name: "Dr. James Wilson",
+  //   role: "Robotics Professor, Stanford",
+  //   bio: "Specializes in human-robot interaction and autonomous systems for healthcare applications.",
+  //   image: "/images/circuit-pattern.svg",
+  //   social: {
+  //     linkedin: "https://linkedin.com/in/",
+  //     twitter: "https://twitter.com/"
+  //   }
+  // }
 ];
 
 interface SpeakerCardProps {
