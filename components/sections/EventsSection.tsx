@@ -70,8 +70,15 @@ const EventCard = ({ event, className, featured = false }: { event: EventItem; c
 };
 
 const EventsSection = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/events`);
-  const events: EventItem[] = await response.json();
+  let events: EventItem[] = [];
+
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/events`);
+    if (!response.ok) throw new Error('Fetch failed');
+    events = await response.json();
+  } catch (error) {
+    console.warn('Failed to fetch events during build/runtime:', error);
+  }
 
   const featuredEvent = events.find((e) => e.featured) as EventItem;
   const otherEvents = events.filter((e) => e !== featuredEvent);

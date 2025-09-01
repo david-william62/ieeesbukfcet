@@ -81,8 +81,14 @@ const TeamMemberCard = ({ member }: { member: TeamMemberItem }) => {
 };
 
 const TeamSection = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/team`, { cache: 'no-store' });
-  const teamMembers: TeamMemberItem[] = await response.json();
+  let teamMembers: TeamMemberItem[] = [];
+
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/team`, { cache: 'no-store' });
+    teamMembers = await response.json();
+  } catch (error) {
+    console.warn('Failed to fetch team members during build/runtime:', error);
+  }
 
   const sbMembers = teamMembers.filter(member => member.branch.toLowerCase() === "sb").sort((a, b) => a.rank - b.rank);
   const iasMembers = teamMembers.filter(member => member.branch.toLowerCase() === "ias").sort((a, b) => a.rank - b.rank);
