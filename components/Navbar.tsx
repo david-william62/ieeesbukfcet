@@ -9,7 +9,7 @@ const navLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
   { href: "#events", label: "Events" },
-  { href: "#speakers", label: "Speakers" },
+  // { href: "#speakers", label: "Speakers" },
   { href: "#team", label: "Team" },
   { href: "#contact", label: "Contact" },
 ];
@@ -62,7 +62,8 @@ const Navbar = () => {
           ))}
           
           <Link
-            href="#register"
+            href="https://www.ieee.org/membership-application/public/join.html?grade=Student"
+            target="_blank"
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md transition-colors hover-lift"
           >
             Register
@@ -100,7 +101,8 @@ const Navbar = () => {
             ))}
             
             <Link
-              href="#register"
+              href="https://www.ieee.org/membership-application/public/join.html?grade=Student"
+              target="_blank"
               className="bg-primary hover:bg-primary/90 text-primary-foreground mt-2 py-2 px-3 rounded-md text-center"
               onClick={() => setIsOpen(false)}
             >

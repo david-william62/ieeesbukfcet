@@ -6,17 +6,17 @@ import SpeakersSection from "@/components/sections/SpeakersSection";
 import TeamSection from "@/components/sections/TeamSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/Footer";
-import { ClientScripts } from "./client";
+// import { ClientScripts } from "./client";
 
 export default function Home() {
   return (
     <main className="relative overflow-x-hidden">
-      <ClientScripts />
+      {/* <ClientScripts /> */}
       <Navbar />
       <HeroSection />
       <AboutSection />
       <EventsSection />
-      <SpeakersSection />
+      {/* <SpeakersSection /> */}
       <TeamSection />
       <ContactSection />
       <Footer />
