@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Linkedin, Twitter, Globe } from "lucide-react";
 
@@ -73,11 +75,24 @@ const SpeakerCard = ({ speaker }: { speaker: SpeakerItem }) => {
   );
 };
 
-const SpeakersSection = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/speakers`
-  );
-  const speakers: SpeakerItem[] = await response.json();
+const SpeakersSection = () => {
+  const [speakers, setSpeakers] = useState<SpeakerItem[]>([]);
+
+  useEffect(() => {
+    const fetchSpeakers = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/speakers`
+        );
+        const data = await response.json();
+        setSpeakers(data);
+      } catch (error) {
+        console.warn("Failed to fetch speakers:", error);
+        setSpeakers([]); // Fallback to empty array
+      }
+    };
+    fetchSpeakers();
+  }, []);
 
   return (
     <section id="speakers" className="py-16 md:py-24 bg-background">

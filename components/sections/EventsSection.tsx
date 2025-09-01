@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Calendar, ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -69,16 +71,23 @@ const EventCard = ({ event, className, featured = false }: { event: EventItem; c
   );
 };
 
-const EventsSection = async () => {
-  let events: EventItem[] = [];
+const EventsSection = () => {
+  const [events, setEvents] = useState<EventItem[]>([]);
 
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/events`);
-    if (!response.ok) throw new Error('Fetch failed');
-    events = await response.json();
-  } catch (error) {
-    console.warn('Failed to fetch events during build/runtime:', error);
-  }
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/events`);
+        if (!response.ok) throw new Error('Fetch failed');
+        const data = await response.json();
+        setEvents(data);
+      } catch (error) {
+        console.warn('Failed to fetch events:', error);
+        setEvents([]); // Fallback to empty array
+      }
+    };
+    fetchEvents();
+  }, []);
 
   const featuredEvent = events.find((e) => e.featured) as EventItem;
   const otherEvents = events.filter((e) => e !== featuredEvent);

@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Linkedin, Mail, Github } from "lucide-react";
 
@@ -80,15 +82,22 @@ const TeamMemberCard = ({ member }: { member: TeamMemberItem }) => {
   );
 };
 
-const TeamSection = async () => {
-  let teamMembers: TeamMemberItem[] = [];
+const TeamSection = () => {
+  const [teamMembers, setTeamMembers] = useState<TeamMemberItem[]>([]);
 
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/team`, { cache: 'no-store' });
-    teamMembers = await response.json();
-  } catch (error) {
-    console.warn('Failed to fetch team members during build/runtime:', error);
-  }
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/team`, { cache: 'no-store' });
+        const data = await response.json();
+        setTeamMembers(data);
+      } catch (error) {
+        console.warn('Failed to fetch team members:', error);
+        setTeamMembers([]); // Fallback to empty array
+      }
+    };
+    fetchTeamMembers();
+  }, []);
 
   const sbMembers = teamMembers.filter(member => member.branch.toLowerCase() === "sb").sort((a, b) => a.rank - b.rank);
   const iasMembers = teamMembers.filter(member => member.branch.toLowerCase() === "ias").sort((a, b) => a.rank - b.rank);
