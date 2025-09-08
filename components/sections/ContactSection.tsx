@@ -88,7 +88,7 @@ const ContactSection = () => {
                       href="mailto:ieee@ukfcet.ac.in" 
                       className="text-foreground/70 hover:text-primary"
                     >
-                      ieee@ukfcet.ac.in
+                      ieeeukf2020@gmail.com
                     </a>
                   </div>
                 </div>
