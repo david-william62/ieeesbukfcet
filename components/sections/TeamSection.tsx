@@ -1,8 +1,9 @@
-"use client";
+"use server"
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { Linkedin, Mail, Github } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 
 interface TeamMemberItem {
   id: string;
@@ -82,27 +83,15 @@ const TeamMemberCard = ({ member }: { member: TeamMemberItem }) => {
   );
 };
 
-const TeamSection = () => {
-  const [teamMembers, setTeamMembers] = useState<TeamMemberItem[]>([]);
+const TeamSection = async () => {
+  const teamMembers = await prisma.teamMember.findMany({
+    orderBy: { rank: "asc" }
+  });
 
-  useEffect(() => {
-    const fetchTeamMembers = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/team`, { cache: 'no-store' });
-        const data = await response.json();
-        setTeamMembers(data);
-      } catch (error) {
-        console.warn('Failed to fetch team members:', error);
-        setTeamMembers([]); // Fallback to empty array
-      }
-    };
-    fetchTeamMembers();
-  }, []);
-
-  const sbMembers = teamMembers.filter(member => member.branch.toLowerCase() === "sb").sort((a, b) => a.rank - b.rank);
-  const iasMembers = teamMembers.filter(member => member.branch.toLowerCase() === "ias").sort((a, b) => a.rank - b.rank);
-  const pelsMembers = teamMembers.filter(member => member.branch.toLowerCase() === "pels").sort((a, b) => a.rank - b.rank);
-  const comsocMembers = teamMembers.filter(member => member.branch.toLowerCase() === "comsoc").sort((a, b) => a.rank - b.rank);
+  const sbMembers = teamMembers.filter((member: TeamMemberItem) => member.branch.toLowerCase() === "sb").sort((a: TeamMemberItem, b: TeamMemberItem) => a.rank - b.rank);
+  const iasMembers = teamMembers.filter((member: TeamMemberItem) => member.branch.toLowerCase() === "ias").sort((a: TeamMemberItem, b: TeamMemberItem) => a.rank - b.rank);
+  const pelsMembers = teamMembers.filter((member: TeamMemberItem) => member.branch.toLowerCase() === "pels").sort((a: TeamMemberItem, b: TeamMemberItem) => a.rank - b.rank);
+  const comsocMembers = teamMembers.filter((member: TeamMemberItem) => member.branch.toLowerCase() === "comsoc").sort((a: TeamMemberItem, b: TeamMemberItem) => a.rank - b.rank);
 
   return (
     <section id="team" className="py-16 md:py-24 bg-background/50">

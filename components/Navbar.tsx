@@ -44,9 +44,16 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2">
-          <span className="font-bold text-xl text-foreground">
-            IEEE <span className="text-primary">UKFCET</span>
-          </span>
+          <img 
+            src="/logo.png" 
+            alt="IEEE Logo"
+            className="h-8 w-8 md:h-10 md:w-10 object-contain"
+          />
+          {/* <img 
+            src="/college-logo.png" 
+            alt="UKFCET Logo"
+            className="h-20 w-20 md:h-50 md:w-50 object-contain"
+          /> */}
         </a>
         
         {/* Desktop Navigation */}

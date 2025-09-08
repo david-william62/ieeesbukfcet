@@ -1,4 +1,4 @@
-"use client";
+"use server"
 
 import React from "react";
 import ThreeScene from "@/components/ui/ThreeScene";
@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const HeroSection = () => {
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
   
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background ThreeScene */}
-      <ThreeScene />
+      {/* <ThreeScene /> */}
       
       {/* Overlay gradient */}
       <div className="absolute inset-0 bg-gradient-radial from-transparent to-background z-10"></div>

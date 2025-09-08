@@ -1,10 +1,10 @@
-"use client";
+"use server"
 
-import React, { useState, useEffect } from "react";
 import { Calendar, ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { prisma } from "@/lib/prisma";
 
 interface EventItem {
   id: string;
@@ -71,26 +71,13 @@ const EventCard = ({ event, className, featured = false }: { event: EventItem; c
   );
 };
 
-const EventsSection = () => {
-  const [events, setEvents] = useState<EventItem[]>([]);
+const EventsSection = async () => {
+  const events = await prisma.event.findMany({ 
+    orderBy: { createdAt: "desc" } 
+  });
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/events`);
-        if (!response.ok) throw new Error('Fetch failed');
-        const data = await response.json();
-        setEvents(data);
-      } catch (error) {
-        console.warn('Failed to fetch events:', error);
-        setEvents([]); // Fallback to empty array
-      }
-    };
-    fetchEvents();
-  }, []);
-
-  const featuredEvent = events.find((e) => e.featured) as EventItem;
-  const otherEvents = events.filter((e) => e !== featuredEvent);
+  const featuredEvent = events.find((e: EventItem) => e.featured) as EventItem;
+  const otherEvents = events.filter((e: EventItem) => e !== featuredEvent);
 
   return (
     <section id="events" className="py-16 md:py-24 bg-background/50">
@@ -112,7 +99,7 @@ const EventsSection = () => {
 
         {events.length > 1 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {otherEvents.map((event) => (
+            {otherEvents.map((event: EventItem) => (
               <EventCard key={event.id} event={event} />
             ))}
           </div>

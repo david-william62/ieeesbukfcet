@@ -1,3 +1,5 @@
+"use server"
+
 import React from 'react';
 import { Info, Users, Award, Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
