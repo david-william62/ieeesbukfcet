@@ -47,13 +47,13 @@ const Navbar = () => {
           <img 
             src="/logo.png" 
             alt="IEEE Logo"
-            className="h-8 w-8 md:h-10 md:w-10 object-contain"
+            className="h-15 w-12 mr-6 md:h-15 md:w-14 object-contain"
           />
-          {/* <img 
+          <img 
             src="/college-logo.png" 
             alt="UKFCET Logo"
-            className="h-20 w-20 md:h-50 md:w-50 object-contain"
-          /> */}
+            className="h-auto w-40 md:h-50 md:w-60 object-contain"
+          /> 
         </a>
         
         {/* Desktop Navigation */}
