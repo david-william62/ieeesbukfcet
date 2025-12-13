@@ -3,6 +3,7 @@
 import { Calendar, ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 
@@ -77,7 +78,9 @@ const EventsSection = async () => {
   });
 
   const featuredEvent = events.find((e: EventItem) => e.featured) as EventItem;
-  const otherEvents = events.filter((e: EventItem) => e !== featuredEvent);
+  const otherEvents = events
+    .filter((e: EventItem) => e.id !== featuredEvent?.id)
+    .slice(0, 3)
 
   return (
     <section id="events" className="py-16 md:py-24 bg-background/50">
@@ -106,7 +109,9 @@ const EventsSection = async () => {
         )}
 
         <div className="text-center mt-10">
-          <Button>View All Events</Button>
+          <Button variant="default">
+            <Link href="/events">View All Events</Link>
+          </Button>
         </div>
       </div>
     </section>

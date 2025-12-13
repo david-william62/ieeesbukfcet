@@ -6,12 +6,12 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#events", label: "Events" },
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#events", label: "Events" },
   // { href: "#speakers", label: "Speakers" },
-  { href: "#team", label: "Team" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#team", label: "Team" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const Navbar = () => {
